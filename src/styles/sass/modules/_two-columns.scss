@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+.module-two-columns {
+    .columns {
+        @include grid-cols-responsive(1, 2);
+    }
+    &.is-expandable {
+        .module-content {
+            display: none;
+        }
+    }
+}
+
+.module-two-columns-one-third {
+    @extend .module-two-columns;
+
+    .column:first-child {
+        @include mq($from: tablet)  {
+            width: 33.33%;
+        }
+    }
+    .rich-text > * {
+        @include v-side('margin', 0, 0.75em);
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}

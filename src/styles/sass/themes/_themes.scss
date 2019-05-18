@@ -1,0 +1,27 @@
+@charset 'utf-8';
+
+.theme {
+  &-petrol {
+    @include theme-palette('light');
+
+    &.is-active {
+      @include theme-palette('petrol');
+    }
+  }
+
+  &-light {
+    @include theme-palette('light');
+  }
+
+  &-lighter-petrol-blue {
+    @include theme-palette('lighter-petrol-blue');
+  }
+
+  &-dark {
+    @include theme-palette('dark');
+  }
+
+  &-dark-media {
+    @include theme-palette('dark-media');
+  }
+}

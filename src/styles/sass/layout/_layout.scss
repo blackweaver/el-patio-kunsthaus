@@ -1,0 +1,44 @@
+@charset 'utf-8';
+
+.limiter {
+    @include width-constraint();
+}
+
+.limiter-extended {
+    background: $color-white;
+    padding: 0 $gutter-m $gutter-m $gutter-m;
+    overflow: hidden;
+    
+    & > h3 {
+        margin-top: 0px;
+    }
+    h3 {
+        @include font-size('black');
+        padding-bottom: 0px;
+        line-height: 1rem;
+        border: none;
+    }
+    > .module:nth-child(2) {
+        padding-top: 0;
+        margin-top: 0;
+    }
+    @include mq($from: desktop) {
+        padding: 0 40px 40px 40px; //Magic
+        @include h-side('margin', auto);
+        box-sizing: border-box;
+        position: relative;
+        width: 100%;
+        max-width: $max-width + 80px;
+    }
+    
+    .template-exhibition-index-page & {
+        @include v-side('padding', $m-elements-between);
+    }
+}
+
+.limiter,
+.limiter-extended {
+    .limiter {
+        @include h-side('padding', 0);
+    }
+}

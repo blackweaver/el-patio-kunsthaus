@@ -1,0 +1,102 @@
+@charset 'utf-8';
+
+html {
+    @include font-size();
+    @include font-smoothing;
+}
+
+body {
+    font-family: $font-default;
+    overflow-x: hidden;
+    &.is-not-home {
+        padding-top: $main-header-height-m;
+        @include mq(tablet) {
+            padding-top: $main-header-height-t;
+        }
+        @include mq(desktop) {
+            padding-top: $main-header-height-d;
+        }
+    }
+
+    &.is-open {
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+iframe {
+    border: none;
+}
+
+figure {    
+    margin: 0;
+    img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    figcaption {
+        margin-top: 10px;
+    }
+}
+picture {
+    img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+
+// Forms
+
+* {
+    &:focus {
+        outline: none;
+    }
+}
+
+form {
+    ul {
+        @include list-unstyled;
+    }
+}
+
+fieldset {
+    padding: 0;
+    border: none;
+}
+
+.module .module-content {
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            padding-left: 15px; 
+            position: relative;
+            &::before {
+                position: absolute;
+                left: 0px; 
+                content: '– ';
+            }
+        }
+    }
+}
+
+// Reset li TODO - Change upper rules just to be applied where needed?
+.card-text ul,
+.module-icon-grid ul,
+.event-dates-container ul,
+ul.dropdown-options,
+ul.social-list,
+ul.multiple-list-content,
+ul.slick-dots,
+ul.tabs-menu {
+    li {
+        padding-left: 0 !important;
+        &::before {
+            content: '' !important;
+            display: none !important;
+        }
+    }
+}

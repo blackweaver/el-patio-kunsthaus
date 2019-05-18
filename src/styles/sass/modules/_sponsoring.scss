@@ -1,0 +1,50 @@
+.module-sponsoring {
+
+    p {
+        @include font-size('static-small');
+        text-align: center;
+
+        @include mq($from: tablet){
+            text-align: left;
+        }
+    }
+
+    .content-sponsors {
+
+      figure {
+        width: 100%;
+        max-width: 335px;
+        text-align: center;
+        margin: 0 auto !important;
+        
+        @include mq($from: tablet){
+          text-align: left;
+          display: inline-block;
+          width: auto;
+          margin-right: $m-elements-between !important;  
+        }
+        
+        @include mq($from: tablet, $until: desktop){
+          height: 80px;
+        }
+        
+        img {
+          height: 100px;
+          @include h-side('margin', auto);
+          @include mq($from: tablet){
+            margin-left: 0;
+            height: 80px;
+          }
+        }
+
+      } 
+      &:last-child {
+          margin-right: 0;
+      } 
+
+      a {
+        @include reset-link;
+      }
+    }
+    
+}

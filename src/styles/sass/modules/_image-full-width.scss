@@ -1,0 +1,10 @@
+@charset 'utf-8';
+
+.module-image-full-width {
+    .page-header & {
+        margin-top: 0;
+    }
+    .page-header .module-lead-text + & {
+        margin-top: $m-general-top;
+    }
+}

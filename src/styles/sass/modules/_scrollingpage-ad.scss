@@ -1,0 +1,152 @@
+@charset 'utf-8';
+
+.scrolling-items {
+    >*:last-child button.next-section {
+        @include hidden;
+    }
+}
+
+.module-scrollingpage-ad {
+    @include view-vh;
+    @include bg-image-cover;
+    @include theme-palette('dark-media');
+    
+    a {
+        @include reset-link;
+    }
+    .title {
+        overflow: hidden;
+        @include font-size('static-exhibition-big-title');
+    }
+
+    .button {
+        margin-top: 1rem;
+    }
+    
+    button.next-section {
+        @include position-centered(absolute, 'x'); 
+        bottom: 1rem;
+    }
+
+    &.background-video-cover {
+        @include background-video-cover;
+    }
+    
+    &.aspect-ratio-16-9 {
+        .content {
+            @include position-centered;
+            max-height: 100%;
+            z-index: 2;
+        }
+    }
+    
+    
+    &.module-scrollingpage-ad-big { 
+        .title {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &.module-scrollingpage-ad-small {
+        align-items: top;
+        justify-content: flex-start;
+        padding-top: 0;
+        @include mq($from:tablet){
+            padding-top: 15vh;
+            justify-content: center;
+        }
+        .hgroup {
+            text-align: left;
+            display: flex;
+            flex-flow: column;
+            padding: 0;
+            @include h-side('padding', 20px);
+            @include mq($from:tablet){
+                @include h-side('padding', 0px);
+            }
+        }
+        .limiter {
+            @include responsive-spacing('padding', 'h', 0, $gutter-t, 0);
+        }
+        .date {
+            margin-top: 1em;
+            @include mq($from:tablet) {
+                margin-top: 10px;
+            }
+        }
+        .description {
+            margin-bottom: 0;
+            display: none;
+            @include mq($from:tablet){
+                display: block;
+            }
+        }
+        .grid {
+            @include grid-cols-responsive(1, 2);
+            .thumbnail {
+                figure{
+                    width: 100%;
+                    img {
+                        width: auto;
+                        height: auto;
+                        @include mq($from:tablet){
+                            right: 0;
+                            left: auto;
+                        }
+                    }
+                }
+            }
+            .hgroup > * {
+                @include mq($from: tablet, $until: desktop) {
+                    margin-right: 10%;
+                }
+            }
+            &.thumbnail-right {
+                figure {
+                    @include mq($from: tablet, $until: desktop) {
+                        width: 90%;
+                    }
+                }
+                .hgroup > * {
+                    margin-right: 0%;
+                }
+
+                @include mq($from:tablet){
+                    @include reverse-direction;
+                    img {
+                        left: 0;
+                        right: auto;
+                    }
+                }
+            }
+        } 
+        figure {
+            @include mq($from: tablet) {
+                position: relative;
+                min-height: 585px; // Hardcoded to work easily with the vertical centered issue
+                
+                picture {
+                    @include keep-ratio(6/7);
+                    background-color: red;
+                    & > * {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        width: auto;
+                        height: auto;
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                }
+            }
+        }
+
+        .title {
+            @include font-size('static-exhibition-small-title');
+            @include mq($until: tablet) {
+                margin-top: 0.8em;
+            }
+        }
+    }
+}

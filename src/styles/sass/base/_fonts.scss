@@ -1,0 +1,366 @@
+@charset 'utf-8';
+
+@import url("https://fast.fonts.net/t/1.css?apiType=css&projectid=fdf9cf52-240b-454d-927e-1fb4810758f8");
+
+@font-face {
+    font-family: "DIN Next LT Pro";
+    src:url("/static/fonts/66cca6f6-c31d-4bbf-a2a7-998a38ca2ed9.eot?#iefix");
+    src:url("/static/fonts/66cca6f6-c31d-4bbf-a2a7-998a38ca2ed9.eot?#iefix") format("eot"),url("/static/fonts/e492fdb2-9629-4064-a3cd-1233d2a65d11.woff2") format("woff2"),url("/static/fonts/5a230e3e-b354-4bab-863d-9b460a28ddb3.woff") format("woff"),url("/static/fonts/8dc3bf1f-1bc6-4fcc-9f28-cd3c3f6d13fd.ttf") format("truetype");  
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DIN Next LT Pro";   
+    src:url("/static/fonts/49246907-8813-4cfe-84dc-28103a57b07f.eot?#iefix");
+    src:url("/static/fonts/49246907-8813-4cfe-84dc-28103a57b07f.eot?#iefix") format("eot"),url("/static/fonts/8df454bc-0c75-47e7-8966-c7367f1710c8.woff2") format("woff2"),url("/static/fonts/52e2969a-646c-4c17-ba69-49112a741c97.woff") format("woff"),url("/static/fonts/6aa11345-10ac-45d0-a3e7-f4f3fb7fdc27.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DIN Next LT Pro";
+    src:url("/static/fonts/923e62a3-4b49-4936-be63-4b4aac020c3d.eot?#iefix");
+    src:url("/static/fonts/923e62a3-4b49-4936-be63-4b4aac020c3d.eot?#iefix") format("eot"),url("/static/fonts/d0906a1a-ec28-414d-887a-145c1fd3d589.woff2") format("woff2"),url("/static/fonts/f60b43f8-137d-4ea8-9e9e-d6b0c6cea0d3.woff") format("woff"),url("/static/fonts/52dbdc11-b6b1-484e-85e0-7c58dc187df3.ttf") format("truetype"); 
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DIN Next LT Pro";
+    src:url("/static/fonts/daef1a0a-17b7-47ce-9b2a-4b3cd80db578.eot?#iefix");
+    src:url("/static/fonts/daef1a0a-17b7-47ce-9b2a-4b3cd80db578.eot?#iefix") format("eot"),url("/static/fonts/9dc09d53-8913-40cf-8935-a7f059ad3b31.woff2") format("woff2"),url("/static/fonts/cb2a6b45-2c1b-427b-ada2-f72eb07822bc.woff") format("woff"),url("/static/fonts/62d3c949-5cc0-493a-8ce7-a8bdfcf25fbe.ttf") format("truetype");    
+    font-weight: 900;
+    font-style: normal;
+}
+
+// Font
+@function rem($pxval,
+$base:$em-base) {
+    @if not unitless($pxval) {
+        $pxval: strip-units($pxval);
+    }
+    @if not unitless($base) {
+        $base: strip-units($base);
+    }
+    @return ($pxval / $base) * 1rem;
+}
+
+
+@mixin responsive-lineheight($mob:$lineheight-m, $tab-up:$lineheight-t, $lrg:$lineheight-d) {
+    line-height: $mob;
+    
+    @media #{$tablet-up} {
+        line-height: $tab-up;
+    }
+
+    @media #{$desktop-up} {
+        line-height: $lrg;
+    }
+}
+
+@mixin responsive-letter-spacing($mob:$letter-spacing-m, $tab-up:$letter-spacing-t, $lrg:$letter-spacing-d) {
+    letter-spacing: $mob;
+    
+    @media #{$tablet-up} {
+        letter-spacing: $tab-up;
+    }
+    
+    @media #{$desktop-up} {
+        letter-spacing: $lrg;
+    }
+}
+
+@mixin responsive-rem($mob:18px, $tab-up:18px, $lrg:18px) {
+    font-size: rem($mob, 18px);
+    
+    @media #{$tablet-up} {
+        font-size: rem($tab-up, 18px);
+    }
+    
+    @media #{$desktop-up} {
+        font-size: rem($lrg, 18px);
+    }
+}
+
+@mixin font-size($size:'rem') {
+    
+    // Normal p - CAUTION
+    @if $size=='rem' {
+        font-size: 18px;
+        line-height: 1.444;
+        letter-spacing: 0.22;
+        color: $color-dark-gray;
+        font-weight: 400;
+    }
+    
+    // Page Title
+    @if $size=='page-title' {
+        @include responsive-rem(36px, 40px, 60px);
+        @include responsive-letter-spacing(1.2px, 1.3px, 2px);
+        text-transform: uppercase;
+        font-weight: 300;
+    }
+    
+    // Black Base
+    @if $size=='black-base' {
+        color: $color-black;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    
+    // Black
+    @if $size=='black' {
+        line-height: 1.05;
+        @include font-size('black-base');
+        @include responsive-rem(26px, 28px, 28px);
+        @include responsive-letter-spacing(1.5px, 2.1px, 2.1px);
+    }
+
+    // Black custom as required in https://trello.com/c/HLGKQ4Jh
+    @if $size=='black-filters' {
+        line-height: 1.05;
+        @include font-size('black-base');
+        @include responsive-rem(26px, 28px, 25.2px);
+        @include responsive-letter-spacing(1.5px, 2.1px, 2.1px);
+    }
+
+    // Datum
+    @if $size=='datum' {
+        @include font-size('black-base');
+        @include responsive-rem(24px, 24px, 32px);
+    }
+    
+    // XL H1
+    @if $size=='black-filter' {
+        @include font-size('black-base');
+        @include responsive-lineheight(1.357);
+    }
+    
+    // H1 DIN
+    @if $size=='h1-din' {
+        @include responsive-rem(34px, 42px, 58px);
+        @include responsive-lineheight(1.058,1.05,1.074);
+        @include responsive-letter-spacing(0,0,0);
+        text-transform: none;
+        font-weight: 500;
+    }
+    
+    // H2 DIN
+    @if $size=='h2-din' {
+        @include responsive-rem(30px, 36px, 42px);
+        @include responsive-lineheight(1.07,1.11,1.05);
+        color: $color-main-gray;
+        text-transform: none;
+        font-weight: 500;
+    }
+    
+    // H3 DIN
+    @if $size=='h3-din' {
+        @include responsive-rem(24px, 32px, 32px);
+        @include responsive-lineheight(1.16, 1.06, 1.06);
+        @include responsive-letter-spacing(0,0,0);
+        text-transform: none;
+        font-weight: 500;
+    }
+    
+    
+    // H4 DIN
+    @if $size=='h4-din' {
+        @include responsive-rem(24px, 21px, 24px);
+        @include responsive-lineheight(1.33,1.14,1.16);
+        text-transform: none;
+        color: $color-main-gray;
+        font-weight: 500;
+    }
+    
+    // H3 DIN
+    @if $size=='event-snippet-title' {
+        @include responsive-rem(24px, 24px, 32px);
+        @include responsive-lineheight(1,1.16,1);
+        color: $color-main-gray;
+        font-weight: 500;
+    }
+    
+    @if $size=='header-menu-link' {
+        @include responsive-rem(24px, 32px, 42px);
+        @include responsive-lineheight(2.08,1.5,1.428);
+        vertical-align: middle;
+    }
+    
+    // Footer 
+    @if $size=='text-footer' {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+    
+    // highlighted text
+    @if $size=='highlighted-text' {
+        @include responsive-lineheight(1.4);
+        color: $color-main-petrol-blue;
+        letter-spacing: 0.2px;
+    }
+    
+    // TABS MENU
+    @if $size=='tabs-menu' {
+        @include font-size('black-base');
+        @include responsive-rem(21px, 21px, 28px);
+        color: $color-main-gray-soft;
+    }
+
+    
+    // TEXTLINK
+    @if $size=='common-link' {
+        color: $color-main-petrol-blue;
+        text-decoration: underline;
+    }
+    
+    @if $size=='uppercase-link' {
+        @include font-size('static-medium');
+        @include font-size('common-link');
+        text-transform: uppercase;
+    }
+    
+    // TEXTLANG
+    @if $size=='static-textlang' {
+        font-size: 21px;
+        line-height: 1;
+    }
+    
+    // Lead Text
+    @if $size=='lead-text' {
+        font-size: 21px;
+        line-height: 1.333;
+    }
+    
+    @if $size=='static-button' {
+        @include font-size('uppercase-link');
+        @include responsive-letter-spacing(1px);
+        font-weight: 500;
+    }
+    
+    @if $size=='static-paragraphs' {
+        font-size: 18px;
+        line-height: 1.55;
+    }
+    
+    // Sponsors
+    @if $size=='static-small' {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    // Event Type
+    @if $size=='static-medium' {
+        font-size: 16px;
+    }
+    
+    @if $size=='static-caption' {
+        font-size: 14px;
+        line-height: 1.28;
+    }
+    
+    //Quotes
+    @if $size=='quotes' {
+        font-size: 24px;
+        line-height: 32px;
+        // @include font-size('h4-din');
+        @include responsive-rem(21px, 24px, 24px);
+        @include responsive-lineheight(28px, 32px, 32px);
+        color: $color-main-petrol-blue;
+        font-weight: 300;
+    }
+
+    //Breadcrumbs
+    @if $size=='breadcrumbs' {
+        @include responsive-rem(14px, 18px, 18px);
+    }
+    
+    //Price
+    @if $size=='static-exhibition-price' {
+        @include font-size('h3-din');
+        @include responsive-rem(30px, 30px, 30px);
+        font-weight: normal;
+    }
+    
+    // Exhibition Date
+    @if $size=='static-exhibition-date' {
+        @include v-side('margin', 0, 0.75em);
+        font-size: 24px;
+        line-height: 1.25;
+    }
+
+    // Medien Date
+    @if $size=='static-medien-date' {
+        font-size: 18px;
+        line-height: 1.55;
+    }
+    
+    // BIG Exhibition
+    @if $size=='static-exhibition-big-title' {
+        @include font-size('black-base');
+        @include responsive-rem(42px, 42px, 70px);
+        @include responsive-letter-spacing(1.58px, 1.58px, 2.62px);
+        @include v-side('margin', 0);
+        line-height: 1em;
+    }
+    
+    // Small Exhibition
+    @if $size=='static-exhibition-small-title' {
+        @include responsive-rem(32px, 42px, 42px);
+        @include responsive-letter-spacing(1.2px, 2.5px, 1.8px);
+        line-height: 1em;
+    }
+    @if $size=='price-name' {
+        @include responsive-rem(21px, 21px, 24px);
+        @include responsive-lineheight(24px, 24px, 28px);
+        font-weight: 500;
+    }
+    @if $size=='price-currency' {
+        @include responsive-rem(20px, 18px, 18px);
+        @include responsive-lineheight(28px, 28px, 26px);
+        @include responsive-letter-spacing(.22px, .22px, .2px);
+        font-weight: 400;
+    }
+    @if $size=='price-cost' {
+        @include responsive-rem(24px, 32px, 32px);
+        @include responsive-lineheight(28px, 34px, 32px);
+        font-weight: 500;
+    }
+    @if $size=='prices-caption' {
+        @include responsive-rem(18px, 18px, 18px);
+        @include responsive-lineheight(28px, 28px, 28px);
+        @include responsive-letter-spacing(.22px, .22px, .22px);
+        font-weight: 400;
+    }
+    @if $size=='rich-text-h4' {
+        @include responsive-rem(28px, 24px, 24px);
+        @include responsive-lineheight(28px, 28px, 28px);
+        @include responsive-letter-spacing(1.8px, 1.8px, 1.8px);
+        font-weight: 800;
+    }
+    @if $size=='rich-text-p' {
+        @include responsive-rem(18px, 18px, 18px);
+        @include responsive-lineheight(28px, 28px, 28px);
+        @include responsive-letter-spacing(.22px, .22px, .22px);
+        font-weight: 400;
+    }
+    @if $size=='slider-big-title' {
+        @include responsive-rem(24, 36px, 58px);
+        @include responsive-lineheight(28px, 40px, 54px);
+        font-weight: 500;
+    }
+
+    @if $size=='slide-btn-text' {
+        @include responsive-rem(16px, 15px, 16px);
+        @include responsive-lineheight(30px, 28px, 30px);
+        @include responsive-letter-spacing(1px, .95px, 1px);
+        font-weight: 400;
+    }
+
+    @if $size=='card-angebot' {
+        @include responsive-rem(32px, 32px, 32px);
+        font-weight: 400;
+    }
+    
+}

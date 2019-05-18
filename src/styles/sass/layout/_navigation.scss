@@ -1,0 +1,337 @@
+@charset 'utf-8';
+
+#site-logo svg path,
+#site-logo svg polygon {
+    transition: fill linear 0.5s;
+    fill: $color-white;
+    .is-theme-white &,
+    .is-theme-light & {
+        fill: $color-black;
+    }
+}
+
+nav {
+    @include responsive-spacing('padding', 'h');
+    @include responsive-spacing('padding', 'top', 19px, 33px, 33px);
+    @include transition(right,-100%,'ease-in-out',0.8s);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    overflow-y: auto;
+    z-index: 999;
+    background: $color-main-gray; 
+
+    /* overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { 
+        width: 0 !important 
+    } */
+    
+    @include mq($from: large) {
+        width: 50vw;
+    }
+    .is-open & {
+        @include transition(right,0%,'ease-in-out',0.8s);
+        min-height: 100vh;
+    }
+
+    a {
+        @include link-button();
+    }
+
+    button {
+        @include block-size(50px,auto,1,1.2);
+        
+        // overrides for lower than 360 wide, hack for https://trello.com/c/1i25uTMa
+        @include mq($until: mobile-small) {
+            width: 43px;
+            svg {
+                width: 22px;
+            }
+        }
+        @include reset-button;
+        background: $color-dark-gray;
+        margin-left: 5px;
+        line-height: 0;
+        color: $color-main-gray-soft;
+        padding: 0px 10px;
+
+        @include mq($from: tablet) {
+            padding: 0px;
+        }
+        
+        &:hover {
+            background: $color-main-petrol-default;
+            svg g {
+                stroke: $color-white;
+            }
+        }
+        
+        &:active {
+            background: $color-main-yellow;
+            svg g {
+                stroke: $color-main-gray;
+            }
+        }
+    }
+
+    ul {
+        @include list-unstyled(false);
+    }
+
+    .nav-title {
+        @include h-centered-flex;
+        @include font-size('common-link');
+        @include responsive-spacing('margin', 'bottom', 24px, 38px, 30px);
+        color: $color-main-gray-soft;
+        align-items: center;
+        text-decoration: none;
+        
+        
+        svg {
+            @include block-size(23px,23px,1.26,1.26);
+            margin-right: 15px;
+        }
+
+        ul {
+            li {
+                display: inline;
+            }
+
+            li + li::before {
+                content: ' / ';
+            }
+        }
+
+        a {
+            background: none;
+            text-decoration: underline;
+
+            &.is-inactive {
+                text-decoration: none;
+                cursor: default;
+    
+                &:hover {
+                    color: $color-main-gray-soft;
+                }
+            }
+    
+            &:hover {
+                background: none;
+                color: $color-white;
+            }
+        }
+
+    }
+
+    .nav-content {
+        position: relative;
+        overflow: hidden;
+    }
+
+    li {
+        @include responsive-spacing('margin', 'bottom', 10px, 13px, 16px, 16px);
+        
+        // overrides for lower than 360 wide, hack for https://trello.com/c/1i25uTMa
+        @include mq($until: mobile-small) {
+            margin-bottom: 4px;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+       
+        span {
+            @include h-centered-flex;
+            a {
+                @include responsive-prop('padding-left', 12px, 19px, 21px);
+                @include responsive-prop('padding-right', 12px, 19px, 21px);
+                @include responsive-lineheight(1.5);
+                padding-top: 8px;
+                padding-bottom: 8px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                
+                // overrides for lower than 360 wide, hack for https://trello.com/c/1i25uTMa
+                @include mq($from: mobile-small) {
+                    @include h-side('padding', 100x);
+                    @include font-size('header-menu-link');
+                }
+                @include mq($from: tablet) {
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    @include responsive-lineheight('auto');
+                }
+
+                &:hover {
+                    background: $color-main-petrol-default;
+                }
+
+                &:active, &.is-active {
+                    background: $color-main-yellow;
+                    color: $color-main-gray;
+                }
+            }          
+        }
+        ul {
+            width: 100%;
+            display: none;
+        }
+
+    }
+
+    .nav-main {
+        width: 100%;
+    }
+
+    .nav-languages-info {
+        width: 100%;
+        @include responsive-spacing('margin', 'top', 80px, 80px, 80px);
+        li {
+            margin: 0;
+            @include responsive-lineheight(1);
+            padding: 6px 0;
+
+            @include mq($from: tablet) {
+                padding: 0px;
+                @include responsive-lineheight('auto');
+            }
+
+            a {
+                @include link;
+                @include font-size('static-textlang'); 
+            }
+        }
+        
+    }
+
+    .nav-languages-switcher {
+        @include font-size('common-link');
+        @include responsive-spacing('margin', 'top', 80px, 80px, 80px);
+        height: 60px;
+        position: relative;
+        @include responsive-spacing('margin', 'bottom', $gutter-m, $gutter-t, $gutter-d);
+
+        li {
+            display: block;
+            float: left;
+            color: $color-main-gray-soft;
+            padding-right: 12px;
+            margin: 0;
+
+            &.list-title {
+                height: $gutter-m * 3;
+
+                .lens {
+                    position: absolute;
+                    z-index: 602;
+                    height: $gutter-m * 3;
+                    line-height: $gutter-m * 3;
+                    padding: $gutter-m 0 0 $gutter-m;
+                    color: $color-main-gray-soft;
+                    cursor: pointer;
+
+                    svg g {
+                        stroke: $color-main-gray-soft;
+                    }
+
+                    &.is-active {
+                        svg g {
+                            stroke: $color-main-gray;
+                        }
+                    }
+                    
+                }
+
+                form {
+                    position: absolute;
+                    box-sizing: border-box;
+                    width: 0%;
+                    overflow: hidden;
+                    background: $color-white;
+                    height: $gutter-m * 4;
+                    @include transition(width,0%,'ease-in-out',0.5s);
+
+                    input {
+                        @include reset-input;
+                        min-height: $gutter-m * 4;
+                        line-height: $gutter-m * 4;
+                        margin-left: $gutter-m * 4;
+                        color: $color-main-gray;
+
+                        @include mq($from: tablet) {
+                            max-width: none;
+                            width: 80%;
+                        }
+
+                        &::placeholder {
+                            color: $color-main-gray;
+                        }
+
+                        &[type=submit] {
+                            width: $gutter-m * 4;
+                            position: absolute;
+                            right: 0;
+                            cursor: pointer;
+                        }
+                    }
+
+                    svg {
+                        float: right;
+                        height: $gutter-m * 4;
+                        margin-right: $gutter-m;
+                    }
+
+                    &.is-active {
+                        @include transition(width,100%,'ease-in-out',0.5s);
+                    }
+                }
+            }
+
+            &.suche {
+                cursor: pointer;
+                padding-right: 38px;
+            }
+
+            & + li {
+                padding-top: $gutter-m;
+            }
+
+            &:nth-child(2) {
+                padding-left: $gutter-m * 2.5;
+            } 
+
+
+            a {
+                @include link();
+                text-transform: lowercase;
+
+                &.active {
+                    color: $color-white;
+                    border-bottom: 1px solid $color-white;
+                }
+            }
+        }
+    }
+}
+
+.remaining_screen {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: $color-black;
+    opacity: 0;
+    z-index: 602;
+    visibility: hidden;
+
+    &.is-showed {
+        visibility: visible;
+        @include transition(opacity,0.3,'ease-in-out',0.8s);
+    }
+}

@@ -1,0 +1,73 @@
+@charset 'utf-8';
+
+.module-text-teaser {
+	.module-content {
+		@include grid-cols-responsive(1, 1, 2);
+		flex-flow: column nowrap;
+		@include mq($from: desktop) {
+			flex-direction: row;
+		}
+	}
+
+	.highlighted-box {
+		margin-bottom: $gutter-m;
+	}
+
+	.highlighted-box-text {
+		@include responsive-spacing('padding', 'v');
+		@include responsive-spacing('padding', 'h');
+		background-color: $color-lighter-petrol-blue;
+		p {
+			@include font-size("highlighted-text");
+		}
+		a {
+			@include font-size("common-link");
+		}
+	}
+	
+	&.is-reverse {		
+		.module-content {
+			flex-direction: column-reverse;
+			@include mq($from: desktop) {
+				display: block;
+			}
+		}
+
+		.simple-text {
+			@include mq($from: desktop) {
+				width: 75%;
+			}
+		}
+
+		.highlighted-box {
+			@include mq($from: desktop) {
+				float: right;
+				width: 50%;
+			}
+		}
+	}
+
+	p:first-child {
+		margin-top: 0;
+	}
+
+	ul {
+		padding-left: 0;
+		list-style-type: none;
+		li {
+			padding-left: 15px;
+			position: relative;
+			&:before {
+				content: "–";
+				position: absolute;
+				left: 0;
+			}
+		}
+	}
+}
+
+.simple-text {
+	p:first-child {
+		margin-top: 0;
+	}
+}

@@ -1,0 +1,65 @@
+@charset 'utf-8';
+
+.module-search-form {
+    margin-top: 50px;
+    .lens {
+        position: absolute;
+        height: $gutter-m * 3;
+        line-height: $gutter-m * 3;
+        padding: $gutter-m 0 0 $gutter-m;
+        color: $color-main-gray-soft;
+        cursor: pointer;
+
+        svg g {
+            stroke: $color-main-gray;
+        }
+
+        &.is-active {
+            svg g {
+                stroke: $color-main-gray;
+            }
+        }
+        
+    }
+
+    form {
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 100%;
+        background: $color-light-gray;
+        height: $gutter-m * 4;
+
+        input {
+            @include reset-input;
+            min-height: $gutter-m * 4;
+            line-height: $gutter-m * 4;
+            margin-left: $gutter-m * 4;
+            color: $color-main-gray;
+
+            @include mq($from: tablet)  {
+                width: 80%;
+            }
+
+
+            &::placeholder {
+                color: $color-main-gray;
+            }
+
+            &[type=submit] {
+                width: $gutter-m * 4;
+                position: absolute;
+                cursor: pointer;
+            }
+        }
+
+        svg {
+            float: right;
+            height: $gutter-m * 4;
+            margin-right: $gutter-m;
+
+            path {
+                fill: $color-main-gray;
+            }
+        }
+    }
+}

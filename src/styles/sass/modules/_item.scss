@@ -1,0 +1,81 @@
+.item {
+    margin-top: 20px;
+    max-width: map-get($mq-breakpoints, desktop);
+    .submodule & {
+        margin-top: 0px; // Reset when is inside accordions TODO
+    }
+    > a {
+        @include reset-link;
+    }
+}
+
+.item-title {
+    @include font-size('black');
+    @include v-side('margin', $m-text-between, 0);
+    text-transform: none;
+    color: $color-dark-gray;
+    transition: transform linear 0.5s;
+
+    @include mq($until: desktop) {
+        text-decoration: underline;
+    }
+}
+
+.item-contents {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center; 
+    justify-content: space-between
+}
+
+.item-text {
+    @include v-side('margin', $m-text-between, 0);
+    text-transform: none;
+    color: $color-dark-gray;
+    transition: transform linear 0.5s;
+
+    &:first-child {
+        width: 90%;
+    }
+
+    &:last-child {
+        @include font-size('uppercase-link');
+    }
+
+    time {
+        @include font-size('static-medien-date');
+    }
+
+    @include mq($until: desktop) {
+        text-decoration: underline;
+    }
+
+}
+
+.item-headline {
+    @include font-size('h4-din');
+    margin-top: 0;
+    color: $color-main-gray;
+}
+
+.item-active-area {
+    &:hover {
+        .item-text {
+            transform: translateY(-5px);
+            text-decoration: underline;
+        }
+    }
+}
+
+.item-bottom-link {
+    margin-top: $m-text-between;
+
+    a {
+        @include font-size('uppercase-link');
+    }
+
+    svg {
+       margin-right: ($m-text-between / 2);
+       vertical-align: middle;
+    }
+}

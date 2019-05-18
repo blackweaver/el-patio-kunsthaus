@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="48px" viewBox="0 0 34 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/Mitgliedschaft/shop</title>
+    <desc>Created with Sketch.</desc>
+    <g id="MODULE-OVERVIEW" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Module_Overview_page3" transform="translate(-734.000000, -7534.000000)" fill="#000000">
+            <g id="list-Vorteile-2cols" transform="translate(217.000000, 7445.000000)">
+                <g id="rechts" transform="translate(506.000000, 89.000000)">
+                    <g id="03-vorteil" transform="translate(4.000000, 0.000000)">
+                        <g id="1">
+                            <g id="Icons/Mitgliedschaft/shop">
+                                <g id="Group" transform="translate(7.200000, 0.000000)">
+                                    <path d="M0,13.7694908 L5.64302919,13.7694908 C5.64302919,6.16140973 6.42854724,0 16.7192919,0 C27.0104951,0 27.9392627,6.16140973 27.9392627,13.7694908 L33.5822919,13.7694908 L33.5822919,16.8149358 L0,16.8149358 L0,13.7694908 Z M7.84743892,13.7694908 L25.7350346,13.7694908 C25.7350346,7.52269123 25.563401,2.18771591 16.7192692,2.18771591 C7.87536324,2.18771591 7.84743892,7.52271376 7.84743892,13.7694908 Z" id="Shape"></path>
+                                    <polygon id="Shape" points="33.5822919 17.8580893 33.5822919 47.9512649 0 47.9512649 0 17.8580893"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,54 @@
+@charset 'utf-8';
+
+.module-quote-slider {
+    @include v-side('margin', $m-elements-between, 0);
+
+    .is-quotes {
+        margin: 0;
+        > * {  
+            @include mq(tablet) {
+                width: 75% !important;
+            }
+
+            @include mq(desktop) {
+                width: 63.8% !important;
+            }
+        }
+    
+        blockquote {
+            padding-bottom: 0;
+            @include v-side('margin',0);
+        
+            a {
+                text-transform: none;
+            }
+
+        }
+    
+        .slick-dots {
+            text-align: left;
+            padding-left: $gutter-m * 3;
+
+            li {
+                button {
+                    @include block-size(12px);
+                    border-radius: 6px;
+                    border: solid 2px $color-lighter-petrol-blue;
+                    box-sizing: border-box;
+    
+                    &::before {
+                        position: relative;
+                        content: '';
+                    }
+                }
+    
+                &.slick-active {
+                    button {
+                        border: none;
+                        background-color: $color-main-petrol-blue;
+                    }
+                }
+            }
+        }
+    }
+}

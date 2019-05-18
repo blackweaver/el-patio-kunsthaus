@@ -1,0 +1,50 @@
+.card-offer {
+    position: relative;
+
+    .card-content {
+        @include box-shadow('card');
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        // transform: none!important;
+
+        .card-thumbnail {
+            width: 100%;
+            position: relative;
+        }
+
+        .card-text {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0px 20px 16px 20px;
+            margin: 0;
+            text-decoration: none;
+
+            .card-category {
+                @include font-size('slide-btn-text');
+                display: block;
+                color: $color-white;
+                text-transform: uppercase;
+            }
+
+            .card-headline {
+                @include font-size('card-angebot');
+                margin: 0;
+                color: $color-white;
+            }
+        }
+
+        .card-active-area {
+            &:hover {
+                .card-thumbnail::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

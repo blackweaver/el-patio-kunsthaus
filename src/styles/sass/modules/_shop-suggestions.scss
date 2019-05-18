@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+.module-shop-suggestions {
+    .module-title {
+        margin-top: 0;
+    }
+    @include mq($until: tablet) {
+        .slick-dots {
+            bottom: -20px;
+        }
+        .slick-slide {
+            padding-right: $gutter-m;
+        }
+    }
+}

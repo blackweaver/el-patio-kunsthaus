@@ -1,0 +1,120 @@
+@charset 'utf-8';
+
+.page-angebot {
+
+    .page-header {
+        position: relative;
+        .limiter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+
+            .header-filter {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #97A8B0;
+                border-radius: 100%;
+                cursor: pointer;
+                transition: all ease-in-out .3s;
+
+                a {
+                    display: flex;
+                }
+
+                &:hover,
+                &.active {
+                    background-color: $color-main-yellow;
+                }
+
+                @include mq($from: desktop) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .page-content {
+        background-color: #EFF2F3;
+        padding-bottom: 82px;
+
+        $grid-gutter: 20px;
+
+        .angebot-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            @include mq($from:desktop) {
+                @include h-side('margin', -10px);
+                justify-content: center;
+            }
+
+            .card-spacer {
+                height: 0;
+                display: none;
+                @include mq($from: desktop) {
+                    flex-basis: 100%;
+                    display: block;
+                }
+            }
+            .card-offer {
+                margin-bottom: 0;
+                box-sizing: border-box;
+                
+                &, figure {
+                    @extend .aspect-ratio-1-1;
+                }
+                & {
+                    @include mq($from:tablet) {
+                        width: calc(50% - 20px);
+                        padding-bottom: calc(50% - 20px);
+                        @include h-side('margin', 10px);
+                    }
+                    @include mq($from:desktop) {
+                        width: calc((100% - (#{$grid-gutter} * 3)) / 3);
+                        padding-bottom: calc((100% - (#{$grid-gutter} * 3)) / 3);                        
+                    }
+                }
+                &.offer-is-featured:first-child  {
+                    &, figure {
+                        @extend .aspect-ratio-2-1;
+                        @include mq($until:tablet) {
+                            width: 100%;
+                            padding-bottom: 100%;
+                        }
+                    }
+                }
+                &.offer-is-featured:first-child {
+                    @include mq($from:tablet) {
+                        width: 100%;
+                        padding-bottom: calc((100% - (#{$grid-gutter} * 2))/2);
+                    }
+                    @include mq($from:desktop) {
+                        @include h-side('margin', 15%);
+                        width: calc(((100% - (#{$grid-gutter} * 3)) / 3) * 2 + #{$grid-gutter});
+                        padding-bottom: calc((100% - (#{$grid-gutter} * 3)) / 3);
+                    }
+
+                }
+            }
+
+        }
+    }
+}
+
+.offer-page {
+    .page-header {
+        h1 {
+            letter-spacing: normal;
+        }
+    }
+
+    .offer-container {
+        padding: 0;
+        margin-top: 4rem;
+    }
+}

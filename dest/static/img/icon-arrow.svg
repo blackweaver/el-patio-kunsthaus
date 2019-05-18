@@ -1,0 +1,14 @@
+<svg width="33px" height="24px" viewBox="0 0 33 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Icons/Navi/Pfeil_default" transform="translate(-14.000000, -19.000000)" fill-rule="nonzero" stroke="#C6C6C6" stroke-width="3">
+            <g id="Icons/Navi/submit–&gt;_white">
+                <g transform="translate(15.000000, 20.000000)">
+                    <g id="Icons/submit–&gt;" transform="translate(15.500000, 10.500000) rotate(-90.000000) translate(-15.500000, -10.500000) translate(5.000000, -5.000000)">
+                        <path d="M9.5,0.5 L9.5,27.5" id="Line"></path>
+                        <polyline id="Line-2" points="20.1128496 20 9.59973734 30.5131122 -2.37993611e-29 20"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

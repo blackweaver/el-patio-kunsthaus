@@ -1,0 +1,67 @@
+@charset 'utf-8';
+
+.module-image-and-rich-text {    
+    .module-content {
+      @include grid-cols-responsive(1, 2, 2);
+      
+      .module-image {
+        img {
+          width: 75%;
+          @include mq($from: tablet) {
+            width: 100%;
+          }
+
+        }
+      }
+  
+      .module-text {
+        margin-top: 1rem;
+        @include mq($from: tablet) {
+          margin-top: 0;
+        }
+        h4 {
+          @include v-side('padding',$m-title-between,$m-text-between);
+          margin: 0;
+        }
+        p {
+          margin-top: 0;
+        }
+        & > *:first-child {
+          margin-top: 0;
+        }
+      }
+  
+      @include mq($from: tablet) {
+        .module-image,
+        .module-text {
+          width: 50%;
+          & > *:first-child {
+            padding-top: 0;
+          }
+          h4 {
+            padding-top: 0;
+          }
+        }
+      }
+      @include mq($from: desktop) {
+        .module-image {
+          width: 33.333%;
+        }
+        .module-text {
+          width: 66.666%;
+        }
+      }
+  
+      &.is-reverse {
+          flex-direction: row-reverse;
+      }
+   
+      &.image-one-half {
+          @include mq($from: tablet) {
+          > * {
+              width: 50%;
+              }
+          }
+      }
+    }
+}

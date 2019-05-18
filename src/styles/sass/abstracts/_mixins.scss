@@ -1,0 +1,727 @@
+@charset 'utf-8';
+
+// Basic
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin text-center {
+    text-align: center;
+}
+
+@mixin hidden {
+    display: none !important;
+}
+
+@mixin font-smoothing {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+}
+
+@mixin bg-image-cover {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@mixin v-side($prop, $size_a, $size_b:$size_a) {
+    #{$prop}-top: $size_a;
+    #{$prop}-bottom: $size_b;
+}
+
+@mixin h-side($prop, $size_a, $size_b:$size_a) {
+    @if ($prop=='left-right') {
+        left: $size_a;
+        right: $size_b;
+    } @else {
+        #{$prop}-left: $size_a;
+        #{$prop}-right: $size_b;
+    }
+}
+
+@mixin list-unstyled($inline:false) {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    >li::before {
+        content: none;
+        margin: 0;
+    }
+    @if ($inline) {
+        >li {
+            display: inline-block;
+        }
+    }
+}
+
+@mixin overlay-before {
+    position: relative;
+    &::before {
+        @include fill-parent;
+        content: "";
+        transition: opacity linear 0.3s;
+        z-index: 2;
+        background: $color-main-gray;
+        opacity: 0;
+    }
+}
+
+
+@mixin hide-text {
+    overflow: hidden;
+    &:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%;
+    }
+}
+
+@mixin hide {
+    position: fixed;
+    left: 110%;
+}
+
+@mixin unhide {
+    position: static;
+    left: auto;
+}
+
+@mixin width-constraint() {
+    @include h-side('margin', auto);
+    @include responsive-spacing('padding', 'h');
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    max-width: $max-width;
+
+    @include mq($from: large) {
+        padding-left: 0;
+        padding-right: 0;
+    };
+}
+
+@mixin avoid-width-constraint() {
+    @include h-padding(0);
+}
+
+@mixin narrow-width() {
+    max-width: $narrow;
+}
+
+@mixin svg-replace-content($url, $width, $height, $h-align: center, $v-align: center, $bg-size: false) {
+    @include hide-text;
+    display: inline-block;
+    width: $width;
+    height: $height;
+    background: url('#{$url}') $h-align $v-align no-repeat;
+    @if ($bg-size) {
+        background-size: $bg-size;
+    }
+}
+
+@function columns-width($n-columns: 1,
+$additional-gutters: 0) {
+    @return $n-columns * $column+($n-columns - 1) * $gutter+$additional-gutters * $gutter;
+}
+
+@function elastic-columns-width($n-columns: 1,
+$additional-gutters: 0) {
+    @return $n-columns * $column-percent+($n-columns - 1) * $gutter-percent+$additional-gutters * $gutter-percent;
+}
+
+@mixin centered-elastic-columns($n-columns: 1,
+$additional-gutters: 0) {
+    box-sizing: border-box;
+    width: elastic-columns-width($n-columns, $additional-gutters);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $additional-gutters * $gutter-percent / 2;
+    padding-right: $additional-gutters * $gutter-percent / 2;
+}
+
+@function strip-units($value) {
+    @return ($value / ($value * 0 + 1));
+}
+
+@mixin view-vh($v:100vh) {
+    @include v-centered-flex;
+    min-height: #{$v};//calc(#{$v} - 60px);
+    box-sizing: border-box;
+    margin: 0;
+    @if ($v==100vh) {
+        @include v-side('padding',10vh);
+    }
+    .ie11 & {
+        height: #{$v};//calc(#{$v} - 60px);
+    }
+    // @if ($v==100vh) {
+    //     @media #{$tablet-up} {
+    //         >*:first-child {
+    //             transform: translateY(-30px);
+    //         }
+    //     }
+    // }
+}
+
+@mixin responsive-prop($prop:'min-height',
+$mob:1rem,
+$tab-up:$mob,
+$desk-up:$tab-up,
+$lrg:$desk-up) {
+    #{$prop}: $mob;
+    @if $tab-up !=$mob {
+        @media #{$tablet-up} {
+            #{$prop}: $tab-up;
+        }
+    }
+    @if $desk-up !=$tab-up {
+        @media #{$desktop-up} {
+            #{$prop}: $desk-up;
+        }
+    }
+    @if $lrg !=$desk-up {
+        @media #{$large} {
+            #{$prop}: $lrg;
+        }
+    }
+}
+
+@mixin v-centered-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+@mixin h-centered-flex {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+@mixin position-centered($position:absolute, $axis:'xy') {
+    position: $position;
+    @if $axis=='x' {
+        left: 50%;
+        transform: translateX(-50%);
+    } @else if $axis=='y' {
+        top: 50%;
+        transform: translateY(-50%);
+    } @else {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@mixin flex-row-wrap {
+    display: flex;
+    flex-flow: wrap;
+    box-sizing: border-box;
+    // max-width: 100%;
+    >* {
+        box-sizing: border-box;
+    }
+}
+
+@mixin grid-cols-responsive-paddings($cols-mobile:1, $gutter-multiplier:1) {
+    @if $cols-mobile!=1 {
+        @include h-side('margin', -$gutter-d*$gutter-multiplier);
+    }
+    @media #{$tablet-up} {
+        @include h-side('margin',  -$gutter-t*$gutter-multiplier);
+    }
+    @media #{$desktop-up} {
+        @include h-side('margin', -$gutter-m*$gutter-multiplier);
+    }
+    >* {
+        box-sizing: border-box;
+    
+        @if $cols-mobile!=1 {
+            @include h-side('padding', $gutter-d*$gutter-multiplier);
+        }
+        @media #{$tablet-up} {
+            @include h-side('padding', $gutter-t*$gutter-multiplier);
+        }
+        @media #{$desktop-up} {
+            @include h-side('padding', $gutter-m*$gutter-multiplier);
+        }
+    }
+}
+
+@mixin grid-cols-responsive($cols-mobile:2, $cols-tablet-up:$cols-mobile, $cols-desktop-up:$cols-tablet-up, $gutter-multiplier:1) {
+    @include flex-row-wrap;
+    @include grid-cols-responsive-paddings($cols-mobile, $gutter-multiplier);
+    >* {
+        width: percentage(1/$cols-mobile);
+        @media #{$tablet-up} {
+            width: percentage(1/$cols-tablet-up);
+        }
+        @media #{$desktop-up} {
+            width: percentage(1/$cols-desktop-up);
+        }
+    }
+}
+
+@mixin cta-link-light($content:'↳ ',
+$location:'before') {
+    &,
+    * {
+        @include reset-link;
+    }
+    &::#{$location} {
+        content: $content;
+    }
+    &:hover {
+        &,
+        * {
+            font-style: normal;
+        }
+    }
+}
+
+@mixin cta-link($content:'↳ ',
+$location:'before') {
+    font-weight: bold;
+    font-style: italic;
+    @include cta-link-light($content,
+    $location);
+}
+
+@mixin responsive-spacing($prop:'margin',
+$side:'bottom',
+$mob:$gutter-m,
+$tab-up:$gutter-t,
+$desk-up:$gutter-d,
+$lrg:$desk-up) {
+    @if $side=='v' {
+        @include v-side(#{$prop},
+        $mob);
+        @if $tab-up !=$mob {
+            @media #{$tablet-up} {
+                @include v-side(#{$prop},
+                $tab-up);
+            }
+        }
+        @if $desk-up !=$tab-up {
+            @media #{$desktop-up} {
+                @include v-side(#{$prop},
+                $desk-up);
+            }
+        }
+        @if $lrg !=$desk-up {
+            @media #{$large} {
+                @include v-side(#{$prop},
+                $lrg);
+            }
+        }
+    }
+    @else if $side=='h' {
+        @include h-side(#{$prop},
+        $mob);
+        @if $tab-up !=$mob {
+            @media #{$tablet-up} {
+                @include h-side(#{$prop},
+                $tab-up);
+            }
+        }
+        @if $desk-up !=$tab-up {
+            @media #{$desktop-up} {
+                @include h-side(#{$prop},
+                $desk-up);
+            }
+        }
+        @if $lrg !=$desk-up {
+            @media #{$large} {
+                @include h-side(#{$prop},
+                $lrg);
+            }
+        }
+    }
+    @else {
+        #{$prop}-#{$side}: $mob;
+        @if $tab-up !=$mob {
+            @media #{$tablet-up} {
+                #{$prop}-#{$side}: $tab-up;
+            }
+        }
+        @if $desk-up !=$tab-up {
+            @media #{$desktop-up} {
+                #{$prop}-#{$side}: $desk-up;
+            }
+        }
+        @if $lrg !=$desk-up {
+            @media #{$large} {
+                #{$prop}-#{$side}: $lrg;
+            }
+        }
+    }
+}
+
+@mixin responsive-internal-spacing($prop:'margin',
+$side:'bottom') {
+    @include responsive-spacing($prop,
+    $side,
+    3rem,
+    2.5rem,
+    3.75rem);
+}
+
+// Section Bottom & Bottom responsive margin
+@mixin responsive-section-spacing($prop:'margin',
+$axis:'v') {
+    @include responsive-spacing($prop,
+    $axis,
+    6rem,
+    4.8rem,
+    6.4rem,
+    5.7rem);
+}
+
+@mixin color-hover($color:$green) {
+    transition: color linear 0.5s;
+    &:hover {
+        color: $color;
+    }
+}
+
+@mixin fill-parent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/**
+*   Keep a certain ratio while staying flexible
+* @param $r the ratio to keep, f.e. 16/9
+* @param $width the desired width relative to parent box
+*/
+
+@mixin keep-ratio ($r:16/9, $width: 100%) {
+    width: $width;
+    height: 0;
+    padding-bottom: $width/$r;
+}
+
+
+/**
+*   Cut off controls from the embedded vimeo player
+*/
+
+@mixin cut-video-controls {
+    position: relative;
+    overflow: hidden;
+    iframe,
+    video {
+        position: absolute;
+        left: 0;
+        z-index: -2;
+        width: 101%;
+        top: -51%;
+        height: 100%+2 * 51%;
+    }
+}
+
+@mixin block-size ($w:10px, $h:$w, $tablet:1, $desktop:$tablet) {
+    width: $w;
+    height: $h;
+
+    @include mq(tablet) {
+        @if $w != 'auto' {
+            width: $w * $tablet;
+        }
+        @if $h != 'auto' {
+            height: $h * $tablet;
+        }  
+    }
+
+    @include mq(desktop) {
+        @if $w != 'auto' {
+            width: $w * $desktop;
+        }
+        @if $h != 'auto' {
+            height: $h * $desktop;
+        }  
+    }
+}
+
+@mixin transition($prop:right, $value:0, $type:'ease-in-out', $time:1s) {
+    #{$prop}: $value;
+    transition-timing-function: $type;
+    transition: $prop $time;
+}
+
+@mixin link-button() {
+    background: $color-dark-gray;
+    color: $color-main-gray-soft;
+    text-decoration: none;
+    text-transform: none;
+
+    &:hover {
+        background: $color-main-petrol-blue;
+        color: $color-white;
+    }
+    &:active {
+        background: $color-main-yellow;
+        color: $color-main-gray;
+    }
+}
+
+@mixin link() {
+    background: none;
+    color: $color-main-gray-soft;
+    text-decoration: none;
+    text-transform: none;
+
+    &:hover {
+        // color: $color-main-yellow;
+        text-decoration: underline;
+    }
+    &:active {
+        // color: $color-main-petrol-blue;
+    }
+}
+
+
+@mixin theme-palette-items($theme-items:$color-white) {
+    .arrow-button { fill: $theme-items; }// SVG Arrow 
+    &.module * {
+        color:  $theme-items;
+        border-color:  $theme-items;
+    }
+}
+
+@mixin theme-palette($theme:'default') {
+    transition: color linear 0.5s, background-color linear 0.5s, border-color linear 0.5s;
+    @if $theme=='light' {
+        @include theme-palette-items($color-main-gray);
+        * { text-shadow: 0 0 0; }
+        background-color: $color-light-gray;
+    } @else if $theme=='dark' {
+        @include theme-palette-items($color-main-gray-soft);
+        background-color: $color-main-gray;
+    } @else if $theme=='dark-media' {
+        @include theme-palette-items($color-white);
+    } @else if $theme=='petrol' {
+        @include theme-palette-items($color-white);
+        background-color: $color-main-petrol-blue;
+    }
+    @else if $theme=='lighter-petrol-blue' {
+        @include theme-palette-items($color-main-gray);
+        background-color: $color-lighter-petrol-blue;
+    } @else {
+        @include theme-palette-items($color-main-gray);
+        background-color: $color-white;
+        * { text-shadow: 0 0 0; }
+    } 
+}
+
+@mixin absolute-border($location:'after') {
+    position: relative;
+    &::#{$location}
+        {
+        content: '';
+        position: absolute;
+        @if $location=='after' {
+            bottom: 1px;
+            border-bottom: 1px solid $color-lighter-gray;
+        } @else {
+            top: 1px;
+            border-top: 1px solid $color-lighter-gray;
+        }
+        
+        @include h-side('left-right', 0);
+        @include mq($from: tablet){
+            @include h-side('left-right', $gutter-t/2);
+        }
+        @include mq($from: desktop){
+            @include h-side('left-right', $gutter-d/2);
+        }
+    }
+}
+
+/*
+* CSS Resets
+*/
+@mixin reset-font-style {
+    font-weight: normal;
+    font-style: normal;
+}
+
+@mixin reset-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+@mixin reset-header {
+    padding: 0;
+    margin: 0;
+}
+
+@mixin reset-input {
+    background: none;
+    border: none;
+    outline: 0;
+}
+
+@mixin reset-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@mixin reset-link {
+    text-decoration: none;
+}
+
+@mixin reset-padding {
+    @include h-side('margin', -$gutter-m);
+}
+
+@mixin reverse-direction {
+    flex-direction: row-reverse;
+}
+
+@mixin box-shadow($type: 'form-box') {
+    @if $type == 'form-box' {
+        box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.20);
+    }
+    @if $type == 'card' {
+        box-shadow: inset 0 -70px 50px -6px rgba(0, 0, 0, .3);
+    }
+}
+
+@mixin radius($one: 0,$two: $one,$three: $two,$four: $three) {
+    border-top-left-radius: $one;
+    border-top-right-radius: $two;
+    border-bottom-left-radius: $three;
+    border-bottom-right-radius: $four;
+}
+
+@mixin button-space($height:50px, $padding:40px) {
+    @include v-side('padding', 0);
+    @include h-side('padding', $padding);
+    box-sizing: border-box;
+    height: $height;
+    line-height: $height;
+}
+
+@mixin button {
+    @include reset-link();
+    display: inline-block;
+    cursor: pointer;
+    padding: 12px 30px;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: $color-white;
+        color: $color-main-gray;
+    }
+}
+
+@mixin background-video-cover {
+    position: relative;
+    overflow: hidden;
+    > * {
+        z-index: 1;
+    }
+    .video {
+        @include fill-parent;
+        z-index: -1;
+        display: none;
+
+        @include mq($from: tablet) {
+            display: block;
+            z-index: 0;
+        }
+    }
+
+    .video-wrapper {
+        @include position-centered;
+        @include cut-video-controls;
+
+        $width: percentage($max-viewport-ratio * $video-ratio);
+        @include keep-ratio(9/16, $width);
+
+        // cover portrait – width is responsible for player size
+        @media (min-aspect-ratio: 2/3) {
+            // show proper part on wider portrait
+            $width: percentage(3/2 * $video-ratio);
+            @include keep-ratio($video-ratio, $width);
+        }
+
+        @media (min-aspect-ratio: 1/1) {
+            // cover landscape
+            $width: percentage($min-viewport-ratio * $video-ratio);
+            @include keep-ratio(1/$min-viewport-ratio, $width);
+        }
+
+        @media (min-aspect-ratio: 16/10) {
+            // cover landscape
+            $width: percentage(10/16 * $video-ratio);
+            @include keep-ratio(16/10, $width);
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+            // cover landscape
+            $width: percentage(9/16 * $video-ratio);
+            @include keep-ratio(16/10, $width);
+        }
+    }
+}
+
+@mixin scrollbarColor($color: $color-dark-gray) {
+    &::-webkit-scrollbar {
+        width: .8em;
+    }
+     
+    &::-webkit-scrollbar-thumb {
+      background-color: $color;
+      border-radius: 5px;
+    }
+}
+
+@mixin aspect-ratio {
+    display: block;
+	position: relative;
+	> * {
+		@include position-centered;
+		min-width: 100%;
+		min-height: 100%;
+	}
+}
+
+@mixin reset-custom-radio {
+    box-shadow: none;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+@mixin custom-radio ($border: $color-lighter-petrol-blue, $color: $color-main-primary, $rad1: 4px, $rad2: 1px) {
+    background: $color;
+    border: $border solid $rad1;
+    box-shadow: 0px 0px 0px $rad2 $color;
+}
+
+@mixin reset-same-and-adjacent {
+    & + & {
+        padding-top: 0;
+    }
+}

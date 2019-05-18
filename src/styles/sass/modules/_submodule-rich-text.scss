@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+.submodule-rich-text {
+    @include mq($from: desktop) {
+        width: 75%;
+    }
+
+    &>*:first-child {
+        margin-top: 0;
+    }
+}

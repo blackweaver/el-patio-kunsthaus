@@ -1,0 +1,44 @@
+@charset 'utf-8';
+
+.module-pagination {
+    background-color: $color-light-gray;
+    > div {
+        > div {
+            @include grid-cols-responsive(3,3,3);
+            justify-content: space-between;
+            align-items: center;
+            > * {
+                width: auto;
+            }
+
+            p {
+                @include font-size('static-paragraphs');
+                text-align: center;
+                br {
+                    @include mq($from: tablet) {
+                        display: none;
+                    }
+                } 
+            }
+
+            > div {
+                .pagination-link {
+                    cursor: default;
+                    opacity: 0.4;
+                    svg {
+                        transform: rotate(90deg);
+                    }
+
+                    &.is-active {
+                        cursor: pointer;
+                        opacity: 1;
+                    }
+                }
+
+                &:last-child .pagination-link svg  {
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+    }
+}

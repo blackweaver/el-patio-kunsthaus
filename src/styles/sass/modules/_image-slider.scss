@@ -1,0 +1,8 @@
+@charset 'utf-8';
+
+.module-image-slider {
+    .module-title {
+        @include v-side('padding', 0);
+        border-bottom: none;
+    }
+}

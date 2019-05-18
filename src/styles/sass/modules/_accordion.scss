@@ -1,0 +1,68 @@
+@charset 'utf-8';
+
+.module-accordion .cards-grid {
+    @include grid-cols-responsive(1, 4, 4, .6);
+}
+
+.accordion-item {
+    @include v-side('margin', 6px);
+}
+
+.accordion-item-title {
+    @include font-size('static-textlang');
+    @include v-side('margin', 0);
+    @include h-side('padding', $gutter-m);
+    @include h-centered-flex;
+    cursor: pointer;
+    font-weight: 500;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    overflow: hidden;
+    color: $color-main-petrol-blue;
+    
+    transition: background-color ease-in-out .5s;
+    background-color: $color-lighter-petrol-blue;
+    .is-expanded & {
+        background-color: $color-light-blue-scroll;
+    }
+
+    svg {
+        transition: transform ease-in-out .5s;
+        .is-expanded & {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.accordion-item-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height ease-in-out .3s;
+    > * {
+        margin-top: 1.5rem;
+        &:first-child{
+            margin-top: 0;
+        }
+    }
+    .is-expanded & {
+        transition: max-height ease-in-out 1s;
+        max-height: 1700px; // Three rows of exhibitions in desktop
+    }
+    .submodule {
+        &:first-child {
+            margin-top: $m-title-between;
+        }
+        &:last-child {
+            margin-bottom: $m-elements-between;
+        }
+        @include mq($from: desktop) {
+            @include h-side('padding', $gutter-m);
+            &.cards-grid {
+                @include h-side('padding', 0);
+            }
+        }
+    }
+}
+

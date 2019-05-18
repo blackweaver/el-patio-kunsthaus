@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="60px" viewBox="0 0 35 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons/Mitgliedschaft/vernissage</title>
+    <desc>Created with Sketch.</desc>
+    <g id="MODULE-OVERVIEW" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Module_Overview_page3" transform="translate(-231.000000, -7614.000000)" fill="#000000">
+            <g id="list-Vorteile-2cols" transform="translate(217.000000, 7445.000000)">
+                <g id="links" transform="translate(1.000000, 89.000000)">
+                    <g id="02-vorteil" transform="translate(0.000000, 80.000000)">
+                        <g id="1">
+                            <g id="Icons/Mitgliedschaft/vernissage">
+                                <g id="Group-5" transform="translate(13.000000, 0.000000)">
+                                    <path d="M17.7343247,0 C15.7787357,0 14.1891892,1.5684264 14.1891892,3.49786802 C14.1891892,5.42659898 15.7787357,7 17.7343247,7 C19.687752,7 21.2837835,5.42873096 21.2837835,3.49786802 C21.2845041,1.5684264 19.6884726,0 17.7343247,0 Z" id="Shape" fill-rule="nonzero"></path>
+                                    <g id="Group" transform="translate(0.000000, 7.933333)" fill-rule="nonzero">
+                                        <rect id="Rectangle-path" x="6.63857297" y="28.4559963" width="21.7422649" height="6.40617978"></rect>
+                                        <polygon id="Rectangle-path" points="0.115821622 36.5752097 34.9035892 36.5752097 34.9035892 52 0.115821622 52"></polygon>
+                                        <path d="M13.4079135,15.3619064 L13.4079135,26.7443783 L21.6639784,26.7443783 L21.6639784,15.3619064 L24.7553297,15.3619064 L24.7560486,3.67434457 C24.7560486,1.74470412 23.1679568,0.181737828 21.2089027,0.181737828 L13.8133838,0.181737828 C11.8550486,0.181737828 10.2669568,1.74470412 10.2669568,3.67434457 L10.2820541,15.3619064 L13.4079135,15.3619064 Z" id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

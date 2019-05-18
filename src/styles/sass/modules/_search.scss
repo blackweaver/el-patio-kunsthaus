@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+.module-search {
+    @include v-side('margin',50px);
+    a {
+        @include reset-link;
+        padding-top: $gutter-t;
+        border-top: solid 1px $color-lighter-gray;
+        display: block;
+
+        &:last-child {
+            border-bottom: solid 1px $color-lighter-gray;
+        }
+    }
+
+    strong {
+        color: $color-red;
+        font-weight: normal;
+    }
+
+    h3 {
+        color: $color-main-gray;
+    }
+
+}

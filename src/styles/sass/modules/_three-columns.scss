@@ -1,0 +1,7 @@
+@charset 'utf-8';
+
+.module-three-columns{
+    .columns {
+        @include grid-cols-responsive(1, 3);
+    }
+}

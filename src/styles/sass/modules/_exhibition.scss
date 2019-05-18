@@ -1,0 +1,184 @@
+.module-exhibition {
+    @include mq($from:desktop){
+        justify-content: center;
+    }
+    @include mq($until: desktop) {
+        .limiter-extended > h3 + & {
+            margin-top: $m-elements-between !important;
+        }
+    }
+    .limiter-extended > .breadcrumbs + & {
+        margin-top: 0;
+    }
+
+    h3 {
+        margin-top: $m-general-top - $m-title-between;
+    }
+    h4 {
+        line-height: 1rem;
+        margin-bottom: $m-title-between;
+    }
+    .title {
+        text-transform: uppercase;
+    }
+    .hgroup {
+        text-align: center;
+        @include v-side('padding',$m-text-between, 0);
+        @include h-side('padding',$m-text-between);
+        @include mq($from:tablet){
+            padding: 0px;
+        }
+
+        * {
+            color: $color-main-gray;
+        }
+
+        .button-wired-gray {
+            margin-top: $m-title-between;
+            @include mq($from: tablet) {
+                margin-top: $m-elements-between;
+            }
+        }
+
+        > div, > p {
+            @include mq($from: tablet, $until: desktop) {
+                @include h-side('padding', 0);
+                // width: 50% !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        @include mq($from: desktop) {
+            text-align: left;
+        }
+    }
+    .date {
+        margin-bottom: $m-text-between - 12px; // Unavoidable Magic number for line-height
+        display: block;
+        @include mq($from:desktop){
+            margin-top: 0;
+        }
+    }
+    .description {
+        margin: ($m-text-between - 14) 0 0 0; // Unavoidable Magic number for line-height
+        display: none;
+        @include mq($from:tablet){
+            display: block;
+        }
+    }
+    .thumbnail {
+        @include responsive-spacing('margin', 'top', $m-title-between, $m-elements-between, 0);
+        figure {
+            margin: 0 auto;
+            width: 75%;
+            @include mq($from: desktop){
+                width: 100%;
+            }
+            img {
+                // width: 100%;
+                width: auto;
+                height: auto;
+                @include mq($from: desktop){
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+    .grid {
+        @include grid-cols-responsive(1, 1, 2, 1.8);
+        @include reverse-direction;
+        align-items: center;
+        &.is-reverse {
+            @include mq($from: tablet) {
+                flex-direction: row;
+                picture * {
+                    @include mq($from: desktop) {
+                        left: 0;
+                        right: auto;
+                    }
+                }
+            }
+        }
+
+        picture {
+            @include mq($from: desktop) {
+                // background-color: red; DEBUGGIN METHOD
+                display: block;
+                position: relative;
+                overflow: hidden;
+                & > * {
+                    right: 0;
+                    left: auto;
+                    // width: auto;
+                    // height: auto;
+                    // max-width: 100%;
+                    // max-height: 100%;
+                }
+            }        
+        }        
+    }
+    
+    &.is-small .grid {
+        @include mq($from: desktop) {
+            .hgroup {
+                margin-top: 10px;
+            }
+            max-height: 360px; // Hardcoded to work easily with the vertical centered issue
+            align-items: start;
+            picture {
+                @include keep-ratio(4/3);
+                & > * {
+                    position: absolute;
+                    top: 0;
+                }
+            }
+        }
+    }
+    &.is-big .grid {
+        @include mq($from: desktop) {
+            min-height: 585px; // Hardcoded to work easily with the vertical centered issue
+            picture {
+                @include keep-ratio(6/7);
+                & > * {
+                    @include position-centered(absolute, 'y');
+                }
+            }
+        }
+    }
+
+    .page-header &:nth-child(odd) .grid {
+        flex-direction: row;
+        picture * {
+            @include mq($from: desktop) {
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+
+    h4 {
+      @include font-size('black');
+      @include mq($from: desktop) {
+        margin-bottom: $gutter-m;
+      }
+    }
+  
+    .title {
+        @include font-size('static-exhibition-small-title');
+        font-weight: 900;
+  
+        a {
+          @include reset-link;
+        }
+    }
+  
+    .button {
+        margin-top: 1rem;
+    }
+
+    .button + .button {
+        margin-left: $gutter-m;
+    }
+  }

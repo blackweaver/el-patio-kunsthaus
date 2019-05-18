@@ -1,0 +1,163 @@
+@charset 'utf-8';
+
+.module-image-slider-big {
+    
+    .slick-slide {
+        opacity: .5;
+    }
+    .slide {
+        position: relative;
+        overflow: hidden;
+        img {
+            @include h-side('margin', auto);
+            height: 100vw;
+            @include mq($from: 768px) {
+                height: 370px;
+            }
+            @include mq($from: desktop) {
+                height: 550px;
+            }
+        }
+        @include mq($from: tablet) {
+            @include h-side('margin', 10px);
+        }
+
+        .slide-text {
+            position: absolute;
+            text-align: center;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            .slide-title {
+                @include v-side('margin', 10px);
+                color: $color-white;
+            }
+            .button-white {
+                margin-top: 0;
+                margin-bottom: 20px;
+                @include mq(tablet) {
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    .slider-wrapper{
+        position: relative;
+        @include v-side('padding',1rem,0.5rem);
+        @include mq($from: tablet) {
+            @include v-side('padding',2rem,1rem);
+        }
+    }
+
+    &.theme-dark svg {
+        #svg-arrow-rectangle {
+            fill: $color-white;
+        }
+        #svg-arrow {
+            stroke: $color-main-gray;
+        }
+    }
+
+    .slider-controls {
+        display: none;
+
+        &.slider-controls-enabled {
+            @include mq($from: desktop) {            
+                display: flex;
+                flex-flow: row;
+                justify-content: space-between;
+                margin: 0 auto;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%) translateY(250px);
+                z-index: 3;
+                width: 90%;
+                .slider-control-right,
+                .slider-control-left{
+                    z-index: 1;
+                    cursor: pointer;
+                    &:hover svg {
+                        display: block;
+                        opacity: 0.8;
+                    }
+                }
+                .slider-control-left{
+                    margin-right: auto;
+                    svg {
+                        transform: scaleX(-1);
+                    }
+                }
+                .slider-control-right{
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+    .slide-clickable {
+        cursor: pointer;
+        &::after {
+            content: '';
+            height: 120px;
+            z-index: 5;
+            background: linear-gradient(rgba(0, 0, 0, 0) 0%, #000 96%);
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            bottom: 0;
+            opacity: .8;
+            @include mq($from: tablet) {
+                height: 100%;
+                background: rgba(0, 0, 0, .3);
+            }
+            @include mq($from: desktop) {
+                height: 170px;
+                background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 96%);
+            }
+        }
+        @include mq($from: desktop) {
+            &:hover {
+                .slide-text {
+                    @include transition(bottom, 60px, 'ease-in-out', 2s);
+
+                    .button-white {
+                        @include transition(opacity, 1, 'ease-in-out', 1s);
+                    }
+                }
+                &::after {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .slick-center {
+        display: block;
+        opacity: 1;
+
+        @include mq($from: desktop) {
+            .slide-text {
+                @include transition(bottom, 10px, 'ease-in-out', 2s);
+                .button-white {
+                    @include transition(opacity, 0, 'ease-in-out', 1s);
+                    text-decoration: underline;
+                    @include mq($from: desktop) {
+                        background: $color-white;
+                        color: $color-main-gray;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+    
+    .slick-dots {
+        bottom: -30px;
+        @include mq($from: desktop) {
+            bottom: -50px;
+        }
+    }
+}

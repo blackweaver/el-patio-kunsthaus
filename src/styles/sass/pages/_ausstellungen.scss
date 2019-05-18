@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+.template-exhibition-index-page,
+.template-exhibition-page {
+    .page-content-wrapper,
+    .page-header {
+        @include mq($from: tablet) {
+            overflow: hidden;
+            background-color: $color-lighter-petrol-blue;
+        }
+    }
+    .page-content-wrapper {
+        padding-bottom: $m-general-top;
+        overflow: hidden;
+        .module.theme-lighter-petrol-blue {
+            @include v-side('padding', 0);
+        }
+    }
+}

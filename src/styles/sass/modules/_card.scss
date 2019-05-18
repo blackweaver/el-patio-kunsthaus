@@ -1,0 +1,274 @@
+.cards-grid {
+    @include grid-cols-responsive(1, 3, 3);
+    @include mq($from: tablet, $until: desktop) {
+        .module-exhibition-next & {
+            @include grid-cols-responsive(1, 3, 3, .55);
+            padding: 0 $gutter-m;
+        }
+    }
+    .medien-page .theme-lighter-petrol-blue & {
+        @include grid-cols-responsive(1, 4, 4, .55);
+    }
+}
+
+
+.card {
+    @include v-side('margin',$m-text-between);
+    .submodule & {
+        margin-top: 0px; // Reset when is inside accordions TODO
+    }
+    a {
+        @include reset-link;
+    }
+}
+
+.card-headline,
+.card-title {
+    word-break: break-word;
+}
+
+.card-title {
+    @include font-size('black');
+    @include v-side('margin', $m-text-between, 0);
+    text-transform: none;
+    color: $color-dark-gray;
+    transition: transform linear 0.5s;
+
+    @include mq($until: desktop) {
+        text-decoration: underline;
+    }
+    .submodule-archive & {
+        text-transform: uppercase;
+        color: $color-darker-gray;
+
+        @include mq($until: desktop) {
+            text-decoration: none !important;
+        }
+    }
+
+    .module-whats-new &,
+    .module-exhibitions-next & {
+        text-transform: uppercase;
+        @include mq($until: desktop) {
+            text-decoration: none !important;
+        }
+    }
+}
+
+.card-text {
+    @include v-side('margin', $m-text-between, 0);
+    z-index: 3;
+    text-transform: none;
+    color: $color-dark-gray;
+    transition: transform linear 0.5s;
+
+    @include mq($until: desktop) {
+        * {
+            text-decoration: underline;
+        }
+        .module-shop-suggestions & {
+            .card-price,
+            .card-price * {
+                text-decoration: none !important;
+            }
+        }
+    }
+
+    ul {
+        @include reset-ul;
+        margin-top: $gutter-m;
+        text-transform: none;
+        li {
+            @include reset-ul;
+        }
+    }
+
+    &.is-padding-left {
+        padding-left: $gutter-m;
+
+        @include mq($from: tablet) {
+            padding-left: 0;
+        }
+    }
+
+    svg {
+        display: none;
+        g {
+            fill: #536F7A;
+        }
+        .module-shop-suggestions & {
+            display: block;
+        }
+    }
+
+    .card-headline {
+        @include v-side('margin', $m-title-between / 3, $m-text-between);
+    }
+    
+    .text-link {
+        display: block;
+        text-decoration: underline;
+    }
+
+    .submodule-archive & {
+
+        @include mq($until: desktop) {
+            text-decoration: none !important;
+        }
+
+        .card-headline {
+            margin-top: 0;
+        }
+        .card-link {
+            display: none;
+        }
+        svg {
+            display: block;
+        }
+    }
+    .module-whats-new &,
+    .module-exhibitions-next & {
+        @include v-side('margin', $m-text-between, 0);
+        
+        @include mq($until: desktop) {
+            text-decoration: none !important;
+        }
+    }
+
+    .module-exhibitions-next & {
+        @include mq($from: tablet, $until: large) {
+            .card-link {
+                display: none;
+            }
+
+            svg {
+                display: block;
+            }
+        }
+    }
+
+}
+
+.card-price {
+    @include font-size('text-footer');
+    span {
+        @include font-size('static-exhibition-price');
+        color: $color-black;
+    }
+    .module-shop-suggestions & {
+        @include mq($from: tablet, $until: desktop) {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            align-items: center;
+            svg {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+
+.card-headline {
+    @include font-size('h4-din');
+    color: $color-main-gray;
+    .module-whats-new &,
+    .module-accordion & {
+        @include font-size();
+    }
+}
+
+.card-thumbnail {
+    @include overlay-before;
+    overflow: hidden;
+    display: block;
+    &::after{
+        position: absolute;
+        max-width: 40px;
+        bottom: 15px;
+        right: 15px;
+        .facebook & {
+            content: url('/static/img/icon-facebook-news.svg');
+        }
+        .youtube & {
+            content: url('/static/img/icon-youtube-news.svg');
+        }
+        .instagram & {
+            content: url('/static/img/icon-instagram-news.svg');
+        }
+    }
+    .angebot-grid &::before{
+        background: linear-gradient(rgba(0, 0, 0, 0) 0%, #000 95%);
+        opacity: 0.5;
+        z-index: 1;
+    }
+    picture {
+        transition: width linear 1s, height linear 1s;
+        width: 100%;
+        height: 100%;
+    }
+    img {
+        width: 100%;
+        height: auto;
+        max-width: none;
+        max-height: none;    
+        .card-media-release &,
+        .card-exhibition & {            
+            width: 75%;
+            @include mq($from: tablet) {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.card-active-area {
+    @include mq($from: desktop) {
+        &:hover {
+            .card-thumbnail::before {
+                opacity: 0.3;
+                .module-whats-new &,
+                .module-exhibitions-next &,
+                .submodule-arce &{
+                    opacity: 0;
+                }
+                .angebot-grid & {
+                    background: $color-main-gray;
+                }
+            }
+            
+            picture {
+                transition: width linear 1s, height linear 1s;
+                height: auto;
+                width: 103%;
+                height: 103%;
+                .module-whats-new &,
+                .module-exhibitions-next &,
+                .submodule-arce &{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            .card-text {
+                z-index: 1;
+                transform: translateY(-5px);
+                * {
+                    text-decoration: underline;
+                }
+                .card-price {
+                    &, * {
+                    text-decoration: none !important;
+                    }
+                }
+            }
+            .module-shop-suggestions & {
+                svg.shopping-bag {
+                    .shopping-bag-background,
+                    .shopping-bag-bullets {
+                        fill: $color-main-gray;
+                    }
+                }
+            }
+        }
+    }
+}

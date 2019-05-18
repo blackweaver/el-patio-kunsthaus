@@ -1,0 +1,143 @@
+@charset 'utf-8';
+
+.filters {
+	width: 100%;
+
+	.filter-content {
+
+		.filter-title,
+		.filter-selected {
+			display: none;
+			font-size: 28px;
+			font-weight: 800;
+			text-transform: uppercase;
+			letter-spacing: 2.1px;
+			margin-left: 0;
+		}
+
+		.filter-title {
+			color: $color-main-gray;
+
+			@include mq($from: desktop) {
+				display: inline-block;
+			}
+		}
+
+		.filter-selected {
+			align-items: center;
+			justify-content: space-between;
+			color: $color-main-yellow;
+			border-bottom: 2px solid #97A8B0;
+			cursor: pointer;
+
+			&.modal-is-open {
+				.filter-title-underline-arrow {
+					transform: rotate(180deg) translateY(-1px);
+				}
+			}
+
+			@include mq($from: desktop) {
+				display: inline-flex;
+			}
+		}
+		.dropdown-options .dropdown-option {
+			letter-spacing: 0;
+		}
+		.dropdown {
+			display: none;
+			padding: 20px 20px 10px 20px;
+			background-color: $color-main-gray;
+			color: #FFF;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: calc(100% + 25px);
+			z-index: 9999;
+
+			@include mq($from: desktop) {
+				width: 375px;
+				left: 350px;
+				top: calc(100% + 15px);
+			}
+
+			.dropdown-closer {
+				text-align: right;
+				margin-bottom: 10px;
+
+				img {
+					width: 24px;
+					cursor: pointer;
+				}
+			}
+
+			.dropdown-options {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+
+				li {
+					display: inline-block;
+					margin-right: 10px;
+					margin-bottom: 10px;
+
+					.dropdown-option {
+						display: block;
+						color: #FFF;
+						font-size: 16px;
+						line-height: 24px;
+						text-decoration: none;
+						text-transform: capitalize;
+						padding: 8px 18px;
+						background-color: $color-dark-gray;
+						border-radius: 20px;
+						transition: all ease-in-out .3s;
+
+						&.is-active,
+						&:hover {
+							background-color: $color-light-gray;
+							color: $color-main-gray;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.module-general-modal {
+	.spacer {
+		margin-bottom: $m-title-between;
+	}
+}
+
+.dropdown-options {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		display: inline-block;
+		margin-right: 10px;
+		margin-bottom: 10px;
+
+		.dropdown-option {
+			display: block;
+			color: #FFF;
+			font-size: 16px;
+			line-height: 24px;
+			font-weight: 500;
+			text-decoration: none;
+			text-transform: none;
+			padding: 8px 18px;
+			background-color: $color-dark-gray;
+			border-radius: 20px;
+			transition: all ease-in-out .3s;
+
+			&.is-active,
+			&:hover {
+				background-color: $color-light-gray;
+				color: $color-main-gray;
+			}
+		}
+	}
+}

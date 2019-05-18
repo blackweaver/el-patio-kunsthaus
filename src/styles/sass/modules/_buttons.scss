@@ -1,0 +1,242 @@
+@charset 'utf-8';
+
+button,
+.button {
+    @include font-size('static-button');
+    @include reset-button;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.button {
+    @include button;
+    @include button-space(40px, 20px);
+
+    @include mq($from: desktop) {
+        @include button-space(50px, 40px);
+    }
+}
+
+.base-button {
+    margin-top: 1rem;
+}
+
+.button-petrol {
+    margin-top: 1rem;
+    background: $color-main-petrol-blue;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    // display: table-cell;
+    display: inline-block;
+
+    &:after {
+        display: block;
+        position: absolute;
+        content: "";
+        width: 110%;
+        height: 0;
+        padding-bottom: 110%;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        background: $color-main-petrol-default;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0, 0);
+        transition: transform .3s ease 0s;
+        z-index: 0;
+    }
+
+    &:active {
+        &:after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1, 1);
+            transition: transform .3s ease 0s;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0px 4px 4px rgba($color-black, 0.3);
+    }
+
+    .button {
+        margin-top: 0;
+        position: relative;
+        z-index: 1;
+        color: $color-white !important;
+        background-color: $color-main-petrol-default;
+
+        &:hover,
+        &:active {
+            background: transparent;
+        }
+    }
+}
+
+.button-golden {
+    @extend .button-petrol;
+    background: $color-dark-golden;
+
+    &:after {
+        background: $color-light-golden;
+    }
+
+    .button {
+        color: $color-main-gray !important;
+        background-color: $color-light-golden;
+    }
+}
+
+.button-white {
+    @extend .button-petrol;
+    background: $color-white;
+    &:after {
+        // display: none;
+        background: $color-white;
+    }
+    
+    .button {
+        color: $color-main-gray !important;
+        background: $color-white;
+    }
+}
+
+.button-wired-gray {
+    @extend .button-petrol;
+    background: $color-main-gray;
+    color: $color-white;
+    box-sizing: border-box;
+    border: 2px solid $color-main-gray;
+
+    &:after {
+        opacity: .1;
+        background: $color-lighter-gray;
+    }
+
+    &:hover,
+    &:active {
+        box-shadow: none;
+    }
+
+    &:active {
+        border-color: rgba($color-lighter-gray, .1);
+
+        &:after {
+            opacity: .1;
+        }
+    }
+
+    .button {
+        @include button-space(36px, 16px);
+
+        @include mq($from: desktop) {
+            @include button-space(46px, 36px);
+        }
+
+        color: $color-white;
+        background-color: transparent;
+
+        @include mq($from: desktop) {
+            color: $color-main-gray !important;
+            background-color: $color-white;
+        }
+
+        &:hover {
+            color: $color-white !important;
+        }
+    }
+}
+
+.button-wired {
+    background: $color-main-gray;
+    color: $color-white !important;
+    border: 2px solid $color-main-gray;
+
+    @include mq($from: desktop) {
+        background: transparent;
+        color: $color-main-gray !important;
+    }
+
+    &:hover {
+        color: $color-main-gray !important;
+
+        @include mq($from: desktop) {
+            background: $color-main-gray;
+            color: $color-white !important;
+        }
+    }
+
+    .theme-dark-media &,
+    .is-theme-petrol & {
+        border-color: $color-white;
+        color: $color-white !important;
+
+        @include mq($until: desktop) {
+            background: $color-white;
+            color: $color-main-gray !important;
+        }
+
+        &:hover {
+            @include mq($from: desktop) {
+                background: $color-white;
+                color: $color-main-gray !important;
+            }
+        }
+    }
+
+    .theme-light & {
+        border-color: $color-main-gray;
+        color: $color-main-gray !important;
+
+        @include mq($until: desktop) {
+            background: $color-main-gray;
+            color: $color-white !important;
+        }
+
+        &:hover {
+            @include mq($from: desktop) {
+                background: $color-main-gray;
+                color: $color-white !important;
+            }
+        }
+    }
+
+    .module-exhibition & {
+        margin-top: $m-elements-between - 7px !important; // Unavoidable Magic number for line-height
+
+        @include mq($until: desktop) {
+            margin-top: $m-title-between - 7px !important; // Unavoidable Magic number for line-height
+        }
+    }
+}
+
+.pack-buttons {
+    @include v-side('margin', $gutter-m, $gutter-m * 2);
+    
+    @include mq($from: tablet) {
+        display: flex;
+        align-items: center;
+        justify-content: baseline;
+        flex-flow: row nowrap;        
+    }
+
+    > * {
+        display: block;
+        margin-bottom: $gutter-m;
+        cursor: pointer;
+        @include mq($from: tablet) {
+            margin-bottom: 0;
+            display: inline-block;
+            margin-right: $gutter-m;
+        }
+    }   
+    .button-petrol {
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: $gutter-m;
+        @include mq($from: tablet) {
+            width: auto;
+            margin-bottom: 0;
+        }
+    }
+}

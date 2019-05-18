@@ -1,0 +1,16 @@
+<svg width="22px" height="13px" viewBox="0 0 22 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Xl/Seitenanfang" transform="translate(-9.000000, -12.000000)">
+            <g id="Group">
+                <g id="Icons/expand/white&gt;" transform="translate(19.500000, 19.500000) scale(1, -1) translate(-19.500000, -19.500000) ">
+                    <g id="Icon/expand/white&gt;" transform="translate(19.335938, 19.335938) rotate(-360.000000) translate(-19.335938, -19.335938) ">
+                        <g id="expand-more">
+                            <polyline id="RECHTS" fill="#FFFFFF" transform="translate(19.980469, 20.302734) rotate(-270.000000) translate(-19.980469, -20.302734) " points="15.4042969 9.99023437 14.1796875 11.2019531 23.3384766 20.3027344 14.1796875 29.4035156 15.4042969 30.6152344 25.78125 20.3027344"></polyline>
+                            <rect id="bounds" x="0" y="0" width="38.671875" height="38.671875"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

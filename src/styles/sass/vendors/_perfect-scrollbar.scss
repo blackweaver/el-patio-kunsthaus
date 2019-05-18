@@ -1,0 +1,59 @@
+/*
+* Container style
+*/
+.ps {
+	overflow: hidden !important;
+	overflow-anchor: none;
+	-ms-overflow-style: none;
+	touch-action: auto;
+	-ms-touch-action: auto;
+}
+
+/*
+* Scrollbar rail styles
+*/
+.ps__rail-x {
+	height: 10px;
+	bottom: -5px;
+	position: absolute;
+	margin-left: 1rem;
+	@include h-side('margin', 1rem, 0.75rem); // BIG Hack to adjust slider
+	@include mq($from: tablet) {
+		@include h-side('margin', 2.77rem, 2.3rem); // BIG Hack to adjust slider
+	}
+}
+
+.ps--active-x > .ps__rail-x {
+	display: block;
+	background-color: $color-light-blue-scroll;
+	.theme-dark & {
+		background-color: $color-dark-gray;
+	}
+}
+
+
+/*
+* Scrollbar thumb styles
+*/
+.ps__thumb-x {
+	position: absolute;
+	background-color: $color-main-petrol-blue;
+	.theme-dark & {
+		background-color: $color-white;
+	}
+	height: 6px;
+	bottom: 4px;
+}
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+	.ps {
+		overflow: auto !important;
+	}
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.ps {
+		overflow: auto !important;
+	}
+}

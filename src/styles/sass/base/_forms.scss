@@ -1,0 +1,477 @@
+@charset 'utf-8';
+
+form.newsletter-subscribe {
+    @include h-centered-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $gutter-m * 3;
+    border-bottom: 1px solid $color-main-gray-soft;
+    position: relative;
+    .module-media-distributor-form &  {
+        border-bottom: 1px solid $color-dark-gray;
+        @include responsive-prop('width', 100%, 50%, 40%);
+    }
+    &::after {
+        @include fill-parent;
+        content: '';
+        background: $color-white;
+        z-index: 0;
+        width: 0%;
+        transition: width ease-in-out 0.5s;
+    }
+    &.is-active {
+        &::after {
+            width: 100%;
+        }
+        input {
+            color: $color-main-gray !important;
+            
+            &::placeholder {
+                color: $color-main-gray !important;
+            }
+        }
+        svg path {
+            fill: $color-main-gray !important;
+        }
+    }
+    
+    input {
+        z-index: 1;
+        @include reset-input;
+        @include font-size('text-footer');
+        min-height: $gutter-m * 3;        
+        margin-left: $gutter-m/2;
+        color: $color-main-gray;
+        
+        &::placeholder {
+            color: $color-main-gray-soft;
+            .module-media-distributor-form &  {
+                color: $color-main-gray;
+            }
+        }
+        
+        &[type=submit] {
+            width: $gutter-m * 3;
+            position: absolute;
+            right: 0;
+        }
+    }
+    
+    svg {
+        z-index: 1;
+        margin-right: $gutter-m/2;
+        width: 21px;
+        
+        #main-footer & path {
+            fill:$color-main-gray-soft;
+        }
+    }
+
+    
+}
+
+form.form {
+    * {
+        &:focus {
+            outline: none;
+        }
+    
+        &::placeholder {
+            color: $color-lighter-gray;
+        }
+    }
+
+    .box-name {
+        h4 {
+            @include v-side('margin',$m-elements-between,0);
+        }
+
+        &:first-child {
+            h4 {
+                @include v-side('margin',$m-title-between,0);
+            }
+        }
+    }
+
+    
+    input, .ui-selectmenu-button, textarea {
+        width: 50%;
+    }
+
+    input[type="text"], 
+    input[type="date"], 
+    input[type="email"], 
+    .ui-selectmenu-button,
+    .multiple-list-title,
+    textarea {
+        @include h-side('padding',25px);
+        @include radius(4px);
+        box-sizing: border-box;
+        border: 1px solid $color-light-soft-gray;
+        color: $color-dark-gray;
+        background: $color-white;
+        height: $m-elements-between; 
+    }
+
+    input[type="checkbox"] {
+        @include radius(2px);
+        @include block-size(16px);
+        -webkit-appearance: none;
+        border: 1px solid $color-light-soft-gray;
+        margin-right: $m-text-between / 2;
+        background: $color-white;
+    }
+
+    .is-active {
+        input[type="checkbox"] {
+            border: none;
+            background: $color-main-primary url('/static/img/icons/icon-checkbox.svg') center center no-repeat;
+        }
+    }
+
+    textarea {
+        @include v-side('margin',0);
+        @include v-side('padding',$m-text-between,0);
+        width: 100%;
+
+        @include mq($from: tablet) {
+            width: 75%;
+        }
+    }
+
+    .field {
+        @include v-side('padding',$m-text-between, 0);
+
+        &.reset-top {
+            padding-top: 0;
+        }
+
+        &.on-error {
+            color: $color-red;
+        }
+    }
+
+    .textarea {
+        legend {
+            @include v-side('padding',0,$m-text-between / 2);
+        }
+    }
+
+    .grid-form {
+        @include grid-cols-responsive(1,2,2);
+        justify-content: space-between;
+        
+        input, .ui-selectmenu-button {
+            width: 100%;
+        }
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        color: $color-lighter-gray;
+    }
+    
+    label, small {
+        color: $color-lighter-gray-labels;
+        display: block;
+        text-align: left;
+    }
+
+    fieldset {
+        @include v-side('margin',0,$m-elements-between);
+        padding: 0;
+        border: none;
+
+        legend {
+            @include reset-header;
+            @include v-side('padding',0);
+
+            &.margin-top {
+                @include v-side('margin',$m-title-between,0);
+            }
+        }
+
+        p {
+            @include reset-header;
+        }
+
+        &.form-captcha {
+            @include v-side('margin',0);
+        }
+
+        .field-checkbox {
+            a {
+                display: block;
+                @include v-side('padding',$m-text-between,0);
+                @include h-side('padding',$m-title-between - 5px,0);
+            }
+            & input[type="checkbox"] + label {
+                display: inline;
+                color: $color-dark-gray;
+            }
+        }
+
+        .box-person {
+            h4 {
+                @include v-side('margin',$m-title-between);
+            }
+        }
+
+        .box-person + .box-person {
+            display: none;
+        }
+    }  
+
+    .ui-selectmenu-button,
+    .multiple-list-title {
+        @include v-side('padding',0);
+        border: none;
+        background: $color-light-blue-scroll url('/static/img/icons/icon-arrow-select.svg') 95% center no-repeat;
+
+        span {
+            line-height: $m-elements-between;
+        }
+
+        &.ui-corner-top {
+            @include radius(4px,4px,0,0);
+            @include box-shadow('form-box');
+            border: none !important;
+            background: $color-white url('/static/img/icons/icon-arrow-select-down.svg') 95% center no-repeat;
+        }
+    }
+
+    textarea {
+        height: auto;
+    }
+    
+    .required {
+        label::after {
+         content: " *";
+        }
+    }
+}
+
+input, 
+.ui-selectmenu-button,
+textarea {
+    .on-error & {
+        color: $color-red !important;
+        border: 1px solid $color-red !important;
+
+        &::placeholder {
+            color: $color-red;
+        }
+    }
+
+    .ui-icon-triangle-1-s {
+        display: none;
+    }
+
+    &:focus {
+        border-color: $color-main-primary !important;
+
+        &::placeholder {
+            color: $color-main-primary;
+        }
+    }
+}
+
+#ui-datepicker-div {
+    font-family: inherit;
+    text-transform: uppercase;
+    td a {
+        border: none;
+
+        &.ui-state-active {
+            background: $color-dark-gray;
+        }
+    }
+}
+
+.ui-menu.ui-corner-bottom {
+    max-height: 500px;
+}
+
+.ui-datepicker-month,
+.ui-datepicker-calendar thead span{
+    font-weight: 500;
+}
+
+.ui-menu.ui-corner-bottom,
+.multiple-list-content {
+    @include radius(0,0,4px);
+    @include box-shadow('form-box');
+    border: none;
+    background: $color-white;
+
+    .ui-menu-item {
+        div {
+            @include h-side('padding',25px,0);
+            box-sizing: content-box;
+            font-family: inherit;
+            border: none;
+            background: $color-white;
+
+            &.ui-state-active {
+                color: $color-main-primary;
+                background: $color-white;
+            }
+        }
+        &:hover {
+            div {
+                color: $color-main-primary;
+                background: $color-white;
+            }
+        }
+    }
+}
+
+.multiple-list-content,
+.custom-radio,
+.simple-list {
+    position: relative;
+
+    .is-open & {
+        display: block;
+    }
+
+    li {
+        @include v-side('margin',$m-text-between);
+        cursor: pointer;
+        &:first-child {
+            margin-top: 0;
+        }
+        input[type="checkbox"] {
+            @include h-side('margin',0,$m-text-between / 2);
+            @include block-size(16px);
+        }
+
+        &.is-active {
+            color: $color-main-primary;
+        }
+    }
+}
+
+.custom-radio {
+    label::after {
+        content: "" !important;
+    }
+
+    &.inline {
+        label {
+            display: inline-block;
+            margin-right: $m-elements-between;
+        }
+    }
+    .ui-checkboxradio-label,
+    .ui-corner-all,
+    .ui-button,
+    .ui-widget,
+    .ui-checkboxradio-radio-label, 
+    .ui-checkboxradio-checked 
+    .ui-state-active,
+    .ui-state-focus,
+    .ui-visual-focus {
+        @include reset-header;
+        @include reset-custom-radio;
+
+        .ui-checkboxradio-icon {
+            @include block-size(12px);
+            @include custom-radio ($color-lighter-petrol-blue, $color-light-soft-gray, 2px, 1px);
+            margin-right: $m-text-between / 4;
+        }
+
+        &:active,
+        &:visited,
+        &:focus,
+        &:hover {
+            @include reset-custom-radio;
+
+            .ui-checkboxradio-icon {
+                @include block-size(12px);
+                border-width: 2px;
+            }
+        }
+
+        &:hover {
+            .ui-checkboxradio-icon {
+                @include block-size(12px);
+                @include custom-radio ($color-lighter-petrol-blue, $color-light-soft-gray, 2px, 1px);
+                margin-right: $m-text-between / 4;
+            }
+        }
+    }
+
+    .ui-checkboxradio-label {
+        @include v-side('margin',$m-text-between,0);
+    }
+
+    .ui-checkboxradio-checked { 
+        .ui-checkboxradio-icon {
+            @include custom-radio ($color-lighter-petrol-blue, $color-main-primary, 2px, 1px);
+        }
+
+        &:hover {
+            .ui-checkboxradio-icon {
+                @include custom-radio ($color-lighter-petrol-blue, $color-main-primary, 2px, 1px);
+            }
+        }
+    }
+}
+
+.multiple-list-content {
+    @include h-side('padding',25px);
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+
+.simple-list {
+
+    li {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.error-message {
+    @include font-size('small');
+    @include v-side('margin', 0);
+    color: $color-red;
+    text-indent: 5px;
+    
+    &::after {
+        content: " ";
+        display: block;
+
+        @media #{$tablet-up} {
+            display: none;
+        }
+    }
+    
+    fieldset & {
+        visibility: hidden;
+        display: none;
+    }
+    
+    fieldset .on-error & {
+        display: block;
+        visibility: visible;
+    }
+}
+
+.form-row {
+    position: relative;
+}
+.remove-form-row {
+    position: absolute;
+    right: -15px;
+    top: -10px;
+    padding: 15px;
+    display: none;
+    cursor: pointer;
+}

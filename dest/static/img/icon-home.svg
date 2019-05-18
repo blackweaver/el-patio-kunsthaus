@@ -1,0 +1,10 @@
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Icons/Navi/Home_default" transform="translate(1.000000, 1.000000)" fill-rule="nonzero" stroke="#C6C6C6" stroke-width="2">
+            <g id="Icons/Navi/Home">
+                <polyline id="Rectangle-3" points="25 16 25 29 17.0761719 29 17.0761719 21.9842529 10.9945068 21.9842529 10.9945068 29 3 29 3 16"></polyline>
+                <polyline id="Line-3" points="0 14.1421356 14.1421356 0 28.2842712 14.1421356"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

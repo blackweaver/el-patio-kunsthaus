@@ -1,0 +1,9 @@
+<svg width="7px" height="14px" viewBox="0 0 14 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/expand_grey" transform="translate(-15.000000, -10.000000)" fill="#4A4A4A">
+            <g id="expand-more" transform="translate(22.000000, 21.545455) rotate(-90.000000) translate(-22.000000, -21.545455) translate(10.000000, 15.000000)">
+                <polyline id="RECHTS" transform="translate(11.636364, 6.545455) rotate(-270.000000) translate(-11.636364, -6.545455) " points="6.47272727 -5.09090909 5.09090909 -3.72363636 15.4254545 6.54545455 5.09090909 16.8145455 6.47272727 18.1818182 18.1818182 6.54545455"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

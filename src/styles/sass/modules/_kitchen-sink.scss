@@ -1,0 +1,10 @@
+@charset 'utf-8';
+
+.kitchen-sink {
+    article >  h2 {
+        margin-bottom: 1em;
+    }
+    article {
+        @include v-side('margin', 40px, 80px);
+    }
+}

@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+.formulare {
+	.event-container {
+        .limiter {
+            border-top: 1px solid $color-lighter-gray;
+            border-bottom: 1px solid $color-lighter-gray;
+        }
+    }
+
+    .module-lead-text {
+        @include v-side('margin',$m-title-between,$m-elements-between);
+    }
+
+    .page-content {
+        .page {
+            @include v-side('padding',$m-elements-between,$m-general-top);
+            background-color: $color-lighter-petrol-blue;
+        }
+    }
+
+    #main-content {
+        padding-bottom: 0;
+    }
+}

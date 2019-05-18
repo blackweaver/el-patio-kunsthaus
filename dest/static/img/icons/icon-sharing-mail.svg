@@ -1,0 +1,17 @@
+<svg width="50px" height="50px" viewBox="0 0 801 801" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/sharethis" fill-rule="nonzero">
+            <g id="mail">
+                <g>
+                    <circle id="Oval-3" fill="#707070" cx="400.5" cy="400.5" r="400.5"></circle>
+                    <g id="mail.5" transform="translate(184.000000, 257.000000)">
+                        <path d="M395.8992,0 L36.1008,0 C16.2576,0 0.1008,16.1568 0.1008,36 L0.1008,252 C0.1008,271.8432 16.2576,288 36.1008,288 L395.9136,288 C415.7568,288 431.9136,271.8432 431.9136,252 L431.9136,36 C431.8992,16.1568 415.7424,0 395.8992,0 Z" id="Shape" fill="#FFFFFF"></path>
+                        <path d="M44.5,43.5 L195.5,149.5 C208.242188,154.919271 219.934896,154.919271 230.578125,149.5 C241.221354,144.080729 294.951823,108.747396 391.769531,43.5" id="Line" stroke="#707070" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M39.5,241.5 L133.5,160.5" id="Line-3" stroke="#707070" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M297.5,241.5 L391.5,160.5" id="Line-3-Copy" stroke="#707070" stroke-width="23" stroke-linecap="round" stroke-linejoin="round" transform="translate(344.500000, 201.000000) scale(-1, 1) translate(-344.500000, -201.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
